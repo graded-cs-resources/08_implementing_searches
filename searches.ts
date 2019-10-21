@@ -1,13 +1,15 @@
 /* All three of these functions should return the INDEX
  * of the element in `arr` that is closest to `value` without going over
+ * If every element in the array is > value, then it should return -1
  */
 
 export function linearUnsorted(arr: number[], value: number): number {
-    let bestindex = 0;
+    let bestindex = -1;
     /* Convert the pseudocode into typescript */
     /*
         loop I from 1 to the last element of the array
-            if arr[I] is closer to value than arr[BESTINDEX] without going over then
+            if bestindex is -1 and arr[I] < value, make bestindex = I
+            else if arr[I] is closer to value than arr[BESTINDEX] then
                 replace BESTINDEX with I
             end if
             if arr[BESTINDEX] == value then
@@ -16,15 +18,19 @@ export function linearUnsorted(arr: number[], value: number): number {
             end if
         end loop
     */
+
+
     return bestindex;
 }
 
 // This one can assume the array is sorted
 export function linearSorted(arr: number[], value: number): number {
     let bestindex = 0;
+    if (arr[0] > value) { return -1; }
     /* Convert the pseudocode into typescript */
     /*
-        loop I from 1 to the last element of the array
+        if arr[0]> value then return -1
+        loop I from 0 to the last element of the array
             if arr[I] is closer to value than arr[BESTINDEX] without going over then
                 replace BESTINDEX with I
             end if
@@ -40,6 +46,7 @@ export function linearSorted(arr: number[], value: number): number {
 // it may not be the leftmost one.
 export function binary(arr: number[], value: number): number {
     let bestindex = 0;
+    if (arr[0] > value) { return -1; }
     /*
     LEFT=0;
     RIGHT=last index of array
